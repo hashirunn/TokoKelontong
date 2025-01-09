@@ -6,19 +6,13 @@ use Illuminate\Http\Request;
 
 class OwnerController extends Controller
 {
-    public function index()
+    public function warehouse()
     {
-        return view('owner.dashboard'); 
+        return view('warehouse.index'); 
     }
 
-   
-    public function reports()
+    public function stores()
     {
-        return view('owner.reports'); 
-    }
-
-    public function branches()
-    {
-        return view('owner.branches');  
+        return view('stores.index');  
     }
 }
