@@ -13,4 +13,9 @@ class StoreStaffController extends Controller
         $data['staffs'] = StoreStaff::paginate(10);
         return view('staff.index', $data); 
     }
+
+    public function create()
+    {
+        return view('staff.create'); 
+    }
 }

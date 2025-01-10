@@ -77,10 +77,9 @@ Route::group(['middleware' => ['role:manager']],function () {
         ->name('storestaff')
         ->group(function(){
             Route::get('/', [StoreStaffController::class, 'index']);
-            Route::get('/{id}', [StoreStaffController::class, 'branch'])->name('.branch');
+            Route::get('/{id}', [StoreStaffController::class, 'stores'])->name('.stores');
             Route::get('/staff/{id}', [StoreStaffController::class, 'edit'])->name('.edit');
             Route::patch('/staff/{id}', [StoreStaffController::class, 'update'])->name('.update');
-            Route::get('/{id}/create', [StoreStaffController::class, 'create'])->name('.create');
             Route::post('/', [StoreStaffController::class, 'store'])->name('.store');
             Route::post('/{id}', [StoreStaffController::class, 'assign'])->name('.assign');
             Route::delete('/{id}', [StoreStaffController::class, 'remove'])->name('.remove');
@@ -90,19 +89,21 @@ Route::group(['middleware' => ['role:manager']],function () {
     // Route::get('/manager/performance', [ManagerController::class, 'performance'])->name('manager.performance'); // Pemantauan performa tim
 });
 
-Route::group(['middleware' => ['role:warehouse_staff|supervisor']], function () {
-    Route::prefix('/warehouse')
-        ->name('warehouse')
+Route::group(['middleware' => ['role:supervisor']],function () {
+    Route::prefix('/transaction')
+        ->name('transaction')
         ->group(function(){
-            Route::get('/', [WarehouseController::class, 'index']);
-            Route::get('/item', [WarehouseController::class, 'create'])->name('.item.create');
-            Route::post('/item', [WarehouseController::class, 'store'])->name('.item.store');
-            Route::get('/item/{id}', [WarehouseController::class, 'edit'])->name('.item.edit');
-            Route::patch('/item/{id}', [WarehouseController::class, 'update'])->name('.item.update');
-            Route::get('/transaction', [WarehouseController::class, 'transactionIndex'])->name('.transaction');
-            Route::post('/transaction', [WarehouseController::class, 'transactionStore'])->name('.transaction.store');
-        }
-    );
+            Route::get('/', [TransactionController::class, 'index']);
+            Route::get('/{id}', [TransactionController::class, 'stores'])->name('.stores');
+            Route::get('/transaction/{id}', [TransactionController::class, 'edit'])->name('.edit');
+            Route::patch('/staff/{id}', [TransactionController::class, 'update'])->name('.update');
+            Route::post('/', [TransactionController::class, 'store'])->name('.store');
+            Route::delete('/{id}', [TransactionController::class, 'remove'])->name('.remove');
+        });
+
+    // Route::get('/supervisor/dashboard', [SupervisorController::class, 'index'])->name('supervisor.dashboard');
+    // Route::get('/supervisor/tasks', [SupervisorController::class, 'manageTasks'])->name('supervisor.manageTasks'); // Mengelola tugas karyawan
+    // Route::get('/supervisor/daily-report', [SupervisorController::class, 'dailyReport'])->name('supervisor.dailyReport'); // Pemantauan kegiatan harian
 });
 
 Route::group(['middleware' => ['role:cashier']], function () {
