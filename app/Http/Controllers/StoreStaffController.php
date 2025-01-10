@@ -11,4 +11,9 @@ class StoreStaffController extends Controller
     {
         return view('staff.index'); 
     }
+
+    public function create()
+    {
+        return view('staff.create'); 
+    }
 }
