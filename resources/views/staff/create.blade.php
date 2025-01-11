@@ -13,9 +13,7 @@
                          <x-primary-button element="a" href="{{ route('staff')}}">
                              KEMBALI
                          </x-primary-button>
-                         <br/><br/>
                      </div>
-                    <hr/>
                     <div class="flex justify-center">
 
                         <div class="max-w-xl ">

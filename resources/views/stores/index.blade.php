@@ -39,11 +39,14 @@
                                     @endforeach
                                 </td>
                                 <td>
-                                <x-primary-button element="a" href="{{ route('stores', $store->id)}}">
-                                        Detail
+                                <x-primary-button element="a" href="{{ route('warehouse', $store->id)}}">
+                                        STOCK
                                     </x-primary-button>
                                 <x-primary-button element="a" href="{{ route('stores.edit', $store->id)}}">
                                         EDIT
+                                    </x-primary-button>
+                                <x-primary-button element="a" href="{{ route('transaction', $store->id)}}">
+                                        PRINT TRANSACTION
                                     </x-primary-button>
                                 </td>
                             </tr>

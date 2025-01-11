@@ -12,5 +12,20 @@ class TransactionDetail extends Model
     public function product(){
         return $this->belongsTo(Product::class);
     }
+
+    public function transaction(){
+        return $this->belongsTo(Transaction::class);
+    }
+
+    public function stores(){
+        return $this->hasManyThrough(
+            Store::class,
+            Transaction::class,
+            'id',
+            'id',
+            'transaction_id',
+            'store_id'
+        );
+    }
 }
 

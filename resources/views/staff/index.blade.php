@@ -10,9 +10,9 @@
             <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 text-gray-900 dark:text-gray-100">
                 <div class="p-6 text-gray-900 dark:text-gray-100">
-                <x-primary-button tag="a" href="{{ route('staff.create') }}">
-                        Tambah Data
-                    </x-button-link>
+                    <x-primary-button element="a" href="{{ route('staff.create')}}">
+                        Add Staff
+                    </x-primary-button>
                     <br/><br/>
                 </div>
                 <div>

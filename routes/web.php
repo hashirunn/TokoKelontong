@@ -65,6 +65,12 @@ Route::group(['middleware' => ['role:owner']],function () {
         Route::patch('/{id}', [StoresController::class, 'update'])->name('.update');
     });
 
+    Route::prefix('/warehouse')
+    ->name('warehouse')
+    ->group(function () {
+        Route::get('/{id}', [WarehouseController::class, 'index']);
+    });
+
     // Route::get('/staff', [OwnerController::class, 'staff'])->name('staff');
     // Route::get('/store', [OwnerController::class, 'stores'])->name('stores');
     // Route::get('/warehouse', [OwnerController::class, 'warehouse'])->name('warehouse');
@@ -89,49 +95,40 @@ Route::group(['middleware' => ['role:manager']],function () {
     // Route::get('/manager/performance', [ManagerController::class, 'performance'])->name('manager.performance'); // Pemantauan performa tim
 });
 
-Route::group(['middleware' => ['role:supervisor']],function () {
-    Route::prefix('/transaction')
-        ->name('transaction')
-        ->group(function(){
-            Route::get('/', [TransactionController::class, 'index'])->name('.index');
-            Route::get('/{id}', [TransactionController::class, 'stores'])->name('.stores');
-            Route::get('/transaction/{id}', [TransactionController::class, 'edit'])->name('.edit');
-            Route::patch('/staff/{id}', [TransactionController::class, 'update'])->name('.update');
-            Route::post('/', [TransactionController::class, 'store'])->name('.store');
-            Route::delete('/{id}', [TransactionController::class, 'remove'])->name('.remove');
-        });
+// Route::group(['middleware' => ['role:supervisor']],function () {
+//     Route::prefix('/transaction')
+//         ->name('transaction')
+//         ->group(function(){
+//             Route::get('/', [TransactionController::class, 'index']);
+//             Route::get('/{id}', [TransactionController::class, 'stores'])->name('.stores');
+//             Route::get('/transaction/{id}', [TransactionController::class, 'edit'])->name('.edit');
+//             Route::patch('/staff/{id}', [TransactionController::class, 'update'])->name('.update');
+//             Route::post('/', [TransactionController::class, 'store'])->name('.store');
+//             Route::delete('/{id}', [TransactionController::class, 'remove'])->name('.remove');
+//         });
 
-    // Route::get('/supervisor/dashboard', [SupervisorController::class, 'index'])->name('supervisor.dashboard');
-    // Route::get('/supervisor/tasks', [SupervisorController::class, 'manageTasks'])->name('supervisor.manageTasks'); // Mengelola tugas karyawan
-    // Route::get('/supervisor/daily-report', [SupervisorController::class, 'dailyReport'])->name('supervisor.dailyReport'); // Pemantauan kegiatan harian
-});
+//     // Route::get('/supervisor/dashboard', [SupervisorController::class, 'index'])->name('supervisor.dashboard');
+//     // Route::get('/supervisor/tasks', [SupervisorController::class, 'manageTasks'])->name('supervisor.manageTasks'); // Mengelola tugas karyawan
+//     // Route::get('/supervisor/daily-report', [SupervisorController::class, 'dailyReport'])->name('supervisor.dailyReport'); // Pemantauan kegiatan harian
+// });
 
-Route::group(['middleware' => ['role:cashier']], function () {
-    Route::prefix('/transaction')
-        ->name('transaction')
-        ->group(function(){
-            Route::get('/', [TransactionController::class, 'index']);
-            Route::post('/', [TransactionController::class, 'store'])->name('.store');
-        }
-    );
-});
+// Route::group(['middleware' => ['role:cashier']], function () {
+//     Route::prefix('/transaction')
+//         ->name('transaction')
+//         ->group(function(){
+//             Route::get('/', [TransactionController::class, 'index']);
+//             Route::post('/', [TransactionController::class, 'store'])->name('.store');
+//         }
+//     );
+// });
 
 Route::group(['middleware' => ['role:owner|manager']], function () {
     Route::prefix('/transaction')
         ->name('transaction')
         ->group(function(){
-            Route::get('/data', [TransactionController::class, 'data'])->name('.data');
-            Route::get('/data/{id}', [TransactionController::class, 'branchData'])->name('.data.view');
-            Route::post('/print', [TransactionController::class, 'print'])->name('.print');
-            Route::post('/print/all', [TransactionController::class, 'printAll'])->name('.print.all');
-        }
-    );
-    Route::prefix('/item')
-        ->name('item')
-        ->group(function(){
-            Route::get('/data', [WarehouseController::class, 'data'])->name('.data');
-            Route::get('/data/{id}', [WarehouseController::class, 'branchData'])->name('.data.view');
-            Route::get('/data/{id}/print', [WarehouseController::class, 'printBranchData'])->name('.data.view.print');
+            Route::get('/{id}', [TransactionController::class, 'index']);
+            Route::get('/print', [TransactionController::class, 'print'])->name('.print');
+            // Route::get('/print/all', [TransactionController::class, 'printAll'])->name('.print.all');
         }
     );
 });

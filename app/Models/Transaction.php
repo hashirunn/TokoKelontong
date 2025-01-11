@@ -13,7 +13,7 @@ class Transaction extends Model
     }
 
     public function transactionDetails(){
-        return $this->hasMany(TransactionDetail::class)->with('product');
+        return $this->hasMany(TransactionDetail::class);
     }
     
     public function totalPrice()
