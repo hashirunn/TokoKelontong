@@ -39,6 +39,9 @@
                                     @endforeach
                                 </td>
                                 <td>
+                                <x-primary-button element="a" href="{{ route('stores', $store->id)}}">
+                                        Detail
+                                    </x-primary-button>
                                 <x-primary-button element="a" href="{{ route('stores.edit', $store->id)}}">
                                         EDIT
                                     </x-primary-button>

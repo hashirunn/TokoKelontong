@@ -23,19 +23,19 @@ class Store extends Model
 
     }
 
-    public function manager()
-    {
-        return $this->hasOneThrough(
-            User::class,
-            storestaff::class,
-            'branch_id',
-            'id',
-            'id',
-            'user_id'
-        )->whereHas('roles', function ($query) {
-            $query->where('name', 'Manager');
-        });
-    }
+    // public function manager()
+    // {
+    //     return $this->hasOneThrough(
+    //         User::class,
+    //         storestaff::class,
+    //         'branch_id',
+    //         'id',
+    //         'id',
+    //         'user_id'
+    //     )->whereHas('roles', function ($query) {
+    //         $query->where('name', 'Manager');
+    //     });
+    // }
 
     public function stores()
     {

@@ -13,4 +13,26 @@ class StoresController extends Controller
         $data['stores'] = Store::paginate(10);
         return view('stores.index', $data); 
     }
+
+    public function edit($id)
+    {
+        $data['store'] = Store::find($id);
+        return view('stores.edit', $data);
+    }
+
+    public function update(Request $request, $id)
+    {
+        $request->validate([
+            'name' => 'required',
+            'location' => 'required',
+        ]);
+
+        $store = Store::find($id);
+        $store->name = $request->input('name');
+        $store->location = $request->input('location');
+        $store->save();
+
+        return redirect()->route('stores.index');
+    }
+
 }

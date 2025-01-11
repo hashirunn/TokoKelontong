@@ -37,8 +37,8 @@ class StaffController extends Controller
         $request->validate([
             'name' => 'required',
             'email' => 'required|email',
+            'password' => 'required|min:8',
             'role' => ['required', 'not_in:admin,owner'],
-            'password' => 'required|min:8|regex:/^(?=.*[A-Z])(?=.*\d).+$/',
         ]);
 
         // Start the database transaction

@@ -1,55 +1,88 @@
 <x-app-layout>
     <x-slot name="header">
-        <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
-            {{ __('Staff') }}
+        <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-100 leading-tight">
+            {{ __('Tambah Data') }}
         </h2>
     </x-slot>
-
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-<<<<<<< HEAD
             <div class="bg-white dark:bg-gray-900 overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 text-gray-900 dark:text-gray-100">
                     <!-- CONTENT HERE -->
-                    <x-primary-button element="a" href="{{ route('staff')}}">
-                        @csrf
-                        <div class="max-w-xl">
-                            <x-input-label for="name" value="Name" />
-                            <x-text-input id="name" type="text" name="name" class="mt-1 block w-full"
-                                value="{{ old('name') }}" required />
-                            <x-input-error class="mt-2" :messages="$errors->get('name')" />
-                        </div>
-                        <div class="max-w-xl">
-                            <x-input-label for="email" value="E-mail" />
-                            <x-text-input id="email" type="text" name="email" class="mt-1 block w-full"
-                                value="{{ old('email') }}" required />
-                            <x-input-error class="mt-2" :messages="$errors->get('email')" />
-                        </div>
-                        <div class="max-w-xl">
-                            <x-input-label for="password" value="Password" />
-                            <x-text-input id="password" type="number" name="password" class="mt-1 block w-full"
-                                value="{{ old('password') }}" required />
-                            <x-input-error class="mt-2" :messages="$errors->get('password')" />
-                        </div>
-                        <div class="max-w-xl">
-                            <x-input-label for="role" value="Role" />
-                            <x-text-input id="role" type="text" name="role" class="mt-1 block w-full"
-                                value="{{ old('role') }}" required />
-                            <x-input-error class="mt-2" :messages="$errors->get('role')" />
-                        </div>
-                        
-            
-                        <x-secondary-button tag="a" href="{{ route('staff.index') }}">Cancel</x-secondary-button>
-                        <x-primary-button name="save_and_create" value="true">Save & Create Another</x-primary-button>
-                        <x-primary-button name="save" value="true">Save</x-primary-button>
-                    </form>
+                     <div>
+                         <x-primary-button element="a" href="{{ route('staff')}}">
+                             KEMBALI
+                         </x-primary-button>
+                         <br/><br/>
+                     </div>
+                    <hr/>
+                    <div class="flex justify-center">
 
->>>>>>> c159c0df0be37da252d18a66e64b3cd3a048b45e
+                        <div class="max-w-xl ">
+                        <form method="POST" action="{{ route('staff.store') }}">
+                            @csrf
+
+                            <!-- Name -->
+                            <div>
+                                <x-input-label for="name" :value="__('Name')" />
+                                <x-text-input id="name" class="block mt-1 w-96" type="text" name="name" :value="old('name')" required autofocus autocomplete="name" />
+                                <x-input-error :messages="$errors->get('name')" class="mt-2" />
+                            </div>
+
+                            <!-- Email Address -->
+                            <div class="mt-4">
+                                <x-input-label for="email" :value="__('Email')" />
+                                <x-text-input id="email" class="block mt-1 w-96" type="email" name="email" :value="old('email')" required autocomplete="username" />
+                                <x-input-error :messages="$errors->get('email')" class="mt-2" />
+                            </div>
+
+                            <!-- Password -->
+                            <div class="mt-4">
+                                <x-input-label for="password" :value="__('Password')" />
+
+                                <x-text-input id="password" class="block mt-1 w-96"
+                                                type="password"
+                                                name="password"
+                                                required autocomplete="new-password" />
+
+                                <x-input-error :messages="$errors->get('password')" class="mt-2" />
+                            </div>
+
+                            <!-- Confirm Password -->
+                            <div class="mt-4">
+                                <x-input-label for="password_confirmation" :value="__('Confirm Password')" />
+
+                                <x-text-input id="password_confirmation" class="block mt-1 w-96"
+                                                type="password"
+                                                name="password_confirmation" required autocomplete="new-password" />
+
+                                <x-input-error :messages="$errors->get('password_confirmation')" class="mt-2" />
+                            </div>
+
+                            <div class="mt-4">
+                                <x-input-label for="role" :value="__('Role')" />
+                                <select id="role" name="role" class="block mt-1 w-96 bg-gray-100 dark:bg-gray-800 border border-gray-300 dark:border-gray-700 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+                                    <option value="manager">Manager</option>
+                                    <option value="supervisor">Supervisor</option>
+                                    <option value="cashier">Cashier</option>
+                                    <option value="warehouse_staff">Warehouse Staff</option>
+                                    <!-- Add other roles as needed -->
+                                </select>
+                                <x-input-error :messages="$errors->get('role')" class="mt-2" />
+                            </div>
+
+                            <div class="flex items-center justify-center  mt-4">
+
+                                <x-primary-button class="my-5 w-96 justify-center">
+                                    {{ __('Register') }}
+                                </x-primary-button>
+                            </div>
+                        </form>
+                        </div>
+                    </div>
+                    <!-- END CONTENT HERE -->
                 </div>
             </div>
         </div>
     </div>
 </x-app-layout>
-=======
-</x-app-layout>
->>>>>>> c159c0df0be37da252d18a66e64b3cd3a048b45e
