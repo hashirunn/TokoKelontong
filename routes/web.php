@@ -93,7 +93,7 @@ Route::group(['middleware' => ['role:supervisor']],function () {
     Route::prefix('/transaction')
         ->name('transaction')
         ->group(function(){
-            Route::get('/', [TransactionController::class, 'index']);
+            Route::get('/', [TransactionController::class, 'index'])->name('.index');
             Route::get('/{id}', [TransactionController::class, 'stores'])->name('.stores');
             Route::get('/transaction/{id}', [TransactionController::class, 'edit'])->name('.edit');
             Route::patch('/staff/{id}', [TransactionController::class, 'update'])->name('.update');
