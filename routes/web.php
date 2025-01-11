@@ -127,7 +127,7 @@ Route::group(['middleware' => ['role:owner|manager']], function () {
         ->name('transaction')
         ->group(function(){
             Route::get('/{id}', [TransactionController::class, 'index']);
-            Route::get('/print', [TransactionController::class, 'print'])->name('.print');
+            Route::get('transaction/print', [TransactionController::class, 'print'])->name('.print');
             // Route::get('/print/all', [TransactionController::class, 'printAll'])->name('.print.all');
         }
     );
